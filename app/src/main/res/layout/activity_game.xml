@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rinaldy.snookertracker.GameActivity">
+
+    <RelativeLayout
+        android:id="@+id/team_scores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/team_1_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="Team 1"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+            <TextView
+                android:id="@+id/team_1_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/team_1_label"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="000"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/team_2_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="Team 2"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+            <TextView
+                android:id="@+id/team_2_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/team_2_label"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="000"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:id="@+id/player_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/team_scores"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/player_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player 1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/player_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/yourturn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/player_status"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Your turn"
+        android:textAppearance="@android:style/TextAppearance.Holo.Widget" />
+
+    <Button
+        android:id="@+id/redButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="117dp"
+        android:background="#ff0000"
+        android:onClick="pot"
+        android:tag="RED"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+    <Button
+        android:id="@+id/ylwButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/redButton"
+        android:layout_below="@+id/redButton"
+        android:background="#ffff00"
+        android:onClick="pot"
+        android:tag="YLW"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="140dp" />
+
+    <Button
+        android:id="@+id/grnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ylwButton"
+        android:layout_below="@+id/ylwButton"
+        android:background="#00ff00"
+        android:onClick="pot"
+        android:tag="GRN"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="188dp" />
+
+    <Button
+        android:id="@+id/bwnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/grnButton"
+        android:layout_below="@+id/grnButton"
+        android:background="#d2691e"
+        android:onClick="pot"
+        android:tag="BWN"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="236dp" />
+
+    <Button
+        android:id="@+id/bluButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/bwnButton"
+        android:layout_below="@+id/bwnButton"
+        android:background="#0000ff"
+        android:onClick="pot"
+        android:tag="BLU"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="277dp" />
+
+    <Button
+        android:id="@+id/pnkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/bluButton"
+        android:layout_below="@+id/bluButton"
+        android:background="#b46daf"
+        android:onClick="pot"
+        android:tag="PNK"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="325dp" />
+
+    <Button
+        android:id="@+id/blkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pnkButton"
+        android:layout_below="@+id/pnkButton"
+        android:background="#000000"
+        android:onClick="pot"
+        android:tag="BLK"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="373dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/navigation"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/foul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="foul"
+            android:text="Foul" />
+
+        <Button
+            android:id="@+id/nextPlayer"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="nextPlayer"
+            android:text="Next Player" />
+
+        <Button
+            android:id="@+id/endFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="endFrame"
+            android:text="End Frame" />
+
+    </GridLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+</RelativeLayout>

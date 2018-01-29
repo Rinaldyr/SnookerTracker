@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">SnookerTracker</string>
+
+    <string name="home_play">Play!</string>
+    <string name="play_players">Number of Players</string>
+    <string name="play_radio_2p">2 Player</string>
+    <string name="play_radio_4p">4 Player</string>
+    <string name="play_hint_team_1">Team 1</string>
+    <string name="play_hint_team_2">Team 2</string>
+
+    <string name="home_rules">Rules</string>
+    <string name="rules_title">Snooker Rules</string>
+    <string name="rules_text">
+
+
+"<b>Introduction</b>
+Snooker is a cue sport that is played on a baize-covered table with pockets in each of the four corners and in the middle of each of the long side cushions.
+A player (or team) wins a frame (individual game) of snooker by scoring more points than the opponent(s), using the cue ball to pot the red and coloured balls.
+A player (or team) wins a match when they have achieved the best-of score from a pre-determined number of frames. The number of frames is always odd so as to prevent a tie or a draw.
+
+<b>Ball Terminology</b>
+  Cueball - the white ball, the only ball that you may hit
+  Red - red in color, there are 15 at the start of the game
+  Colour - one of the six balls that are neither red nor white
+
+<b>Ball values</b>
+  Red - 1
+  Yellow - 2
+  Green - 3
+  Brown - 4
+  Blue - 5
+  Pink - 6
+  Black - 7
+
+<b>Snooker terminology</b>
+  Pot - to put a ball into a pocket (and have it stay there)
+  Foul - to do something against the rules
+  Snookered - to be unable to roll the cueball in a straight line and hit the ball chosen.
+  Ball ON - the ball you intend to hit with the cueball
+
+<b>Fundamentals</b>
+  1 - You hit the cueball so that it, in turn, hits another ball and hopefully pots it.
+  2 - You must not pot the cueball
+When there are still red balls on the table:
+  3 - Your first shot on every turn must be to hit a red with the cueball
+  4 - If you pot that red (red is the ball ON), then you score 1 point and your next shot may be on any of the colours (be sure to say which one you have chosen). The red stays in the pocket.
+  5 - If you pot that colour (which is now the ball ON), then you score the value of the colour and your next shot must be a red. The colour goes back on its own spot. If it doesn't fit on its spot, then it goes on the highest valued spot available.
+  6 - If you fail to pot, or if you foul, then your turn is ended and your opponent gets to try
+  7 - continue with red-colour-red-colour until all reds are in the pockets
+When all red balls are gone:
+  8. Balls are pocketed in this order - yellow(2), green(3), brown(4), blue(5), pink(6), black(7). They stay in the pocket.
+
+<b>Foul Rules</b>
+  1 - Once struck, cueball must make contact with ball ON first otherwise, foul is committed
+  2 - If your cueball does not hit anything on the table, your opponent may choose to take the shot or turn the table back to you
+  3 - If you commit a foul and your opponent is snookered on all balls ON, he may be allowed to select a freeball(any ball on the table). The freeball, for this shot only, becomes another ball ON and has the same value and is respotted if potted.
+  4 - If your cueball first hits a ball other than the ball ON, then the penalty is the value of the ball struck or 4 points, whichever is greater.
+  5 - If you pot a ball other than the ball ON, then you do NOT score the value of the ball ON but your opponent scores the value of the ball pocketed.
+  6 - If you touch any ball on the table at any time,then the penalty is the value of the ball touched or 4 points, whichever is greater.
+
+<b>The game ends when</b>
+  1. A player resigns because there are not enough balls on the table to make up for the opponent's score OR he does not have enough options to execute a good snooker to force the opponent into a foul.
+  2. All reds and ball colors are pocketed.
+
+<b>Winner</b>
+  The player with the most points at the end of the game wins!
+
+<b>Source</b>
+  <u>https://en.wikipedia.org/wiki/Rules_of_snooker</u>
+  <u>http://www.rulesofsnooker.com/snooker-for-beginners.html</u>
+
+
+
+
+"
+    </string>
+
+    <string name="home_highscores">High Scores</string>
+
+    <string name="home_achievements">Achievements</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="play_hint_player_1">Player 1</string>
+    <string name="play_hint_player_2">Player 2</string>
+    <string name="play_start">Start</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="play_reset">Reset</string>
+
+</resources>
