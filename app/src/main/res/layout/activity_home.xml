@@ -1,54 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGreen0"
     tools:context="com.example.rinaldy.snookertracker.HomeActivity">
-
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="106dp"
-        android:text="@string/app_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <Button
         android:id="@+id/home_play"
-        android:onClick="openSetUp"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/home_play" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="openSetUp"
+        android:text="@string/home_play"
+        app:layout_constraintBottom_toTopOf="@+id/home_rules"
+        app:layout_constraintEnd_toEndOf="@+id/home_rules"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/home_rules"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/home_rules"
-        android:onClick="openRules"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/home_play"
         android:layout_centerHorizontal="true"
-        android:text="@string/home_rules" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="openRules"
+        android:text="@string/home_rules"
+        app:layout_constraintBottom_toTopOf="@+id/home_matches"
+        app:layout_constraintEnd_toEndOf="@+id/home_matches"
+        app:layout_constraintStart_toStartOf="@+id/home_matches" />
 
     <Button
-        android:id="@+id/home_highscores"
-        android:layout_width="wrap_content"
+        android:id="@+id/home_matches"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/home_rules"
         android:layout_centerHorizontal="true"
-        android:text="@string/home_highscores" />
+        android:layout_marginBottom="160dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/home_matches"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/home_achievements"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/home_highscores"
-        android:layout_centerHorizontal="true"
-        android:text="@string/home_achievements" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:contentDescription="@string/app_name"
+        android:layout_width="375dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

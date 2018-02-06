@@ -1,128 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGreen0"
     tools:context="com.example.rinaldy.snookertracker.SetUpActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:orientation="horizontal"
-        android:id="@+id/layout_players">
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/play_players"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_gravity="center"
-            android:text="@string/play_players"/>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <RadioGroup
-            android:id="@+id/radio_player"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkedButton="@+id/play_radio_2p"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/play_radio_2p"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="25dp"
-                android:paddingStart="5dp"
-                android:onClick="onRadioButtonClick"
-                android:text="@string/play_radio_2p" />
-
-            <RadioButton
-                android:id="@+id/play_radio_4p"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="25dp"
-                android:paddingStart="5dp"
-                android:onClick="onRadioButtonClick"
-                android:text="@string/play_radio_4p" />
-
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_teams"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_players"
-        android:orientation="vertical">
+        android:layout_height="439dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:id="@+id/layout_team_1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="205dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
             android:padding="20dp"
-            android:orientation="vertical">
+            app:layout_constraintBottom_toTopOf="@+id/layout_team_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8">
 
             <EditText
                 android:id="@+id/team_1"
+                style="@style/Widget.AppCompat.EditText"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:gravity="center_horizontal"
                 android:hint="@string/play_hint_team_1"
-                android:text="@string/play_hint_team_1" />
+                android:inputType="textPersonName"
+                android:maxLength="10"
+                android:text="@string/play_hint_team_1"
+                android:textColor="@color/colorTeal900"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/player_1"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/play_hint_player_1"/>
-        </LinearLayout>
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:hint="@string/play_hint_player_1"
+                android:maxLength="20"
+                android:text="Vanilla"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/team_1" />
 
-        <LinearLayout
+            <EditText
+                android:id="@+id/player_3"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:ems="10"
+                android:hint="@string/play_hint_player_3"
+                android:inputType="textPersonName"
+                android:maxLength="20"
+                android:text="Chocolate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/player_1" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
             android:id="@+id/layout_team_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
 
             <EditText
                 android:id="@+id/team_2"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:ems="10"
+                android:gravity="center_horizontal"
                 android:hint="@string/play_hint_team_2"
                 android:inputType="textPersonName"
-                android:text="@string/play_hint_team_2" />
+                android:maxLength="10"
+                android:text="@string/play_hint_team_2"
+                android:textColor="@color/colorTeal900"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/player_2"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/play_hint_player_2" />
-        </LinearLayout>
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:hint="@string/play_hint_player_2"
+                android:maxLength="20"
+                android:text="Strawberry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/team_2" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/player_4"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:ems="10"
+                android:hint="@string/play_hint_player_4"
+                android:inputType="textPersonName"
+                android:maxLength="20"
+                android:text="Caramel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/player_2" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:padding="10dp"
-        android:layout_alignParentBottom="true">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_gravity="end"
+            android:layout_marginStart="20dp"
             android:onClick="onResetClick"
-            android:text="@string/play_reset"/>
+            android:text="@string/play_reset" />
 
         <Space
             android:layout_width="0dp"
@@ -130,12 +197,13 @@
             android:layout_weight="1" />
 
         <Button
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.Button"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
             android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
             android:onClick="onStartClick"
-            android:text="@string/play_start"/>
+            android:text="@string/play_start" />
     </LinearLayout>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

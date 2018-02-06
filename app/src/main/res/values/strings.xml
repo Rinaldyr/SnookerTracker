@@ -1,19 +1,20 @@
 <resources>
-    <string name="app_name">SnookerTracker</string>
+    <string name="app_name">Snooker Tracker</string>
 
     <string name="home_play">Play!</string>
-    <string name="play_players">Number of Players</string>
-    <string name="play_radio_2p">2 Player</string>
-    <string name="play_radio_4p">4 Player</string>
+    <string name="play_players">Register Players</string>
     <string name="play_hint_team_1">Team 1</string>
     <string name="play_hint_team_2">Team 2</string>
 
     <string name="home_rules">Rules</string>
     <string name="rules_title">Snooker Rules</string>
-    <string name="rules_text">
+    <string name="rules_text" >
+"
+<b>About</b>
+1575286 - Mobile &amp; Ubiquitous Computing Exercise 2
+This app is to assist players in keeping track of their scores in a Snooker game.
 
-
-"<b>Introduction</b>
+<b>Introduction</b>
 Snooker is a cue sport that is played on a baize-covered table with pockets in each of the four corners and in the middle of each of the long side cushions.
 A player (or team) wins a frame (individual game) of snooker by scoring more points than the opponent(s), using the cue ball to pot the red and coloured balls.
 A player (or team) wins a match when they have achieved the best-of score from a pre-determined number of frames. The number of frames is always odd so as to prevent a tie or a draw.
@@ -75,18 +76,29 @@ When all red balls are gone:
 "
     </string>
 
-    <string name="home_highscores">High Scores</string>
-
-    <string name="home_achievements">Achievements</string>
+    <string name="home_matches">Review Matches</string>
 
     <string name="action_settings">Settings</string>
     <string name="play_hint_player_1">Player 1</string>
     <string name="play_hint_player_2">Player 2</string>
+    <string name="play_hint_player_3">Player 3</string>
+    <string name="play_hint_player_4">Player 4</string>
+    <string name="play_reset">Clear</string>
     <string name="play_start">Start</string>
-    <string name="title_activity_game">GameActivity</string>
+
+    <string name="title_activity_game">Game is on!</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="play_reset">Reset</string>
+    <string name="red">RED\u0020</string>
+    <string name="yellow">YELLOW\u0020</string>
+    <string name="green">GREEN\u0020</string>
+    <string name="brown">BROWN\u0020</string>
+    <string name="blue">BLUE\u0020</string>
+    <string name="pink">PINK\u0020</string>
+    <string name="black">BLACK\u0020</string>
+    <string name="next">NEXT\u0020</string>
+    <string name="foul">Foul</string>
+    <string name="end_frame">End Frame</string>
 
 </resources>

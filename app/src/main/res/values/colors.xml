@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryLight">#C8E6C9</color>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorGreen0">#DCEDC8</color>
+    <color name="colorTeal900">#004D40</color>
+
+    <color name="colorRedBallText">#e57373</color>
+    <color name="colorRedBallF">#b71c1c</color>
+    <color name="colorRedBallT">#640e0e</color>
+
+    <color name="colorBluBallText">#64B5F6</color>
+    <color name="colorBluBallF">#0D47A1</color>
+    <color name="colorBluBallT">#072b62</color>
+
+    <color name="colorGrnBallText">#81C784</color>
+    <color name="colorGrnBallF">#1B5E20</color>
+    <color name="colorGrnBallT">#123e15</color>
+
+    <color name="colorYlwBallText">#FFF176</color>
+    <color name="colorYlwBallF">#FBC02D</color>
+    <color name="colorYlwBallT">#F9A825</color>
+
+    <color name="colorBwnBallText">#A1887F</color>
+    <color name="colorBwnBallF">#5D4037</color>
+    <color name="colorBwnBallT">#412c26</color>
+
+    <color name="colorPnkBallText">#F48FB1</color>
+    <color name="colorPnkBallF">#EC407A</color>
+    <color name="colorPnkBallT">#E91E63</color>
+
+    <color name="colorBlkBallText">#9E9E9E</color>
+    <color name="colorBlkBallF">#212121</color>
+    <color name="colorBlkBallT">#0d0d0d</color>
+
 </resources>

@@ -1,33 +1,21 @@
 package com.example.rinaldy.snookertracker;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
 
-    static final int RED = 1;
-    static final int YLW = 2;
-    static final int GRN = 3;
-    static final int BWN = 4;
-    static final int BLU = 5;
-    static final int PNK = 6;
-    static final int BLK = 7;
-    static final int FOUL = 4;
-
-    int redCount;
-    int ylwCount;
-    int grnCount;
-    int bwnCount;
-    int bluCount;
-    int pnkCount;
-    int blkCount;
+    int basicText;
+    int accentText;
 
     private Button redButton;
     private Button ylwButton;
@@ -36,173 +24,285 @@ public class GameActivity extends AppCompatActivity {
     private Button bluButton;
     private Button pnkButton;
     private Button blkButton;
+    private Button foulButton;
+    private Button nextButton;
 
     private TextView team_1_score;
     private TextView team_2_score;
     private TextView player_message;
-    private TextView player_name;
-    private TextView player_score;
+    private TextView remaining;
 
-    private Team team_1;
-    private Team team_2;
-    private boolean turn; // true means team 1's turn
-    private boolean redToPot;
+    private TextView player_1_name;
+    private TextView player_2_name;
+    private TextView player_3_name;
+    private TextView player_4_name;
+    private TextView player_1_score;
+    private TextView player_2_score;
+    private TextView player_3_score;
+    private TextView player_4_score;
+    private TextView player_1_log;
+    private TextView player_2_log;
+    private TextView player_3_log;
+    private TextView player_4_log;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    //mTextMessage.setText(team_1.toString());
-                    //mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    //mTextMessage.setText(team_2.toString());
-                    //mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    //mTextMessage.setText(new StringBuilder("goodwork"));
-                    //mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-    };
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        basicText = getResources().getColor(R.color.colorBlkBallText);
+        accentText = getResources().getColor(R.color.colorAccent);
+
         TextView team_1_label = findViewById(R.id.team_1_label);
         TextView team_2_label = findViewById(R.id.team_2_label);
-        player_message = (TextView) findViewById(R.id.yourturn);
-        player_name = (TextView) findViewById(R.id.player_label);
-        player_score = (TextView) findViewById(R.id.player_score);
         team_1_score = (TextView) findViewById(R.id.team_1_score);
         team_2_score = (TextView) findViewById(R.id.team_2_score);
+        remaining = (TextView) findViewById(R.id.remaining);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        player_1_name = (TextView) findViewById(R.id.player_1_label);
+        player_2_name = (TextView) findViewById(R.id.player_2_label);
+        player_3_name = (TextView) findViewById(R.id.player_3_label);
+        player_4_name = (TextView) findViewById(R.id.player_4_label);
+        player_1_score = (TextView) findViewById(R.id.player_1_score);
+        player_2_score = (TextView) findViewById(R.id.player_2_score);
+        player_3_score = (TextView) findViewById(R.id.player_3_score);
+        player_4_score = (TextView) findViewById(R.id.player_4_score);
+        player_1_log = (TextView) findViewById(R.id.player_1_log);
+        player_2_log = (TextView) findViewById(R.id.player_2_log);
+        player_3_log = (TextView) findViewById(R.id.player_3_log);
+        player_4_log = (TextView) findViewById(R.id.player_4_log);
 
-        this.turn = this.redToPot = true;
-        this.redCount = 15;
-        this.ylwCount = this.grnCount = this.bwnCount = this.bluCount = this.pnkCount = this.blkCount = 1;
-        this.redButton = (Button) findViewById(R.id.redButton);
-        this.ylwButton = (Button) findViewById(R.id.ylwButton);
-        this.grnButton = (Button) findViewById(R.id.grnButton);
-        this.bwnButton = (Button) findViewById(R.id.bwnButton);
-        this.bluButton = (Button) findViewById(R.id.bluButton);
-        this.pnkButton = (Button) findViewById(R.id.pnkButton);
-        this.blkButton = (Button) findViewById(R.id.blkButton);
+        player_message = (TextView) findViewById(R.id.yourturn);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            team_1 = new Team(getIntent().getStringExtra("team_1"));
-            team_2 = new Team(getIntent().getStringExtra("team_2"));
-            String player_1 = getIntent().getStringExtra("player_1");
-            String player_2 = getIntent().getStringExtra("player_2");
-            String player_3 = getIntent().getStringExtra("player_3");
-            String player_4 = getIntent().getStringExtra("player_4");
-            if (player_1 != null) team_1.addPlayer(new Player(player_1));
-            if (player_2 != null) team_2.addPlayer(new Player(player_2));
-            if (player_3 != null) team_1.addPlayer(new Player(player_3));
-            if (player_4 != null) team_2.addPlayer(new Player(player_4));
-        }
+        redButton = (Button) findViewById(R.id.redButton);
+        ylwButton = (Button) findViewById(R.id.ylwButton);
+        grnButton = (Button) findViewById(R.id.grnButton);
+        bwnButton = (Button) findViewById(R.id.bwnButton);
+        bluButton = (Button) findViewById(R.id.bluButton);
+        pnkButton = (Button) findViewById(R.id.pnkButton);
+        blkButton = (Button) findViewById(R.id.blkButton);
+        foulButton = (Button) findViewById(R.id.foul);
+        nextButton = (Button) findViewById(R.id.nextPlayer);
+
+        Intent intent = getIntent();
+        Team team_1 = new Team(intent.getStringExtra("team_1"));
+        Team team_2 = new Team(intent.getStringExtra("team_2"));
+        String player_1 = intent.getStringExtra("player_1");
+        String player_2 = intent.getStringExtra("player_2");
+        String player_3 = intent.getStringExtra("player_3");
+        String player_4 = intent.getStringExtra("player_4");
+
+        team_1.addPlayers(new Player(player_1), new Player(player_3));
+        team_2.addPlayers(new Player(player_2), new Player(player_4));
+        game = new Game(team_1, team_2);
+
         team_1_label.setText(team_1.getName());
         team_2_label.setText(team_2.getName());
 
-        String whoseTurn = team_1.getName() + "'s turn";
-        player_message.setText(whoseTurn);
+        player_1_name.setTextColor(basicText);
+        player_2_name.setTextColor(basicText);
+        player_3_name.setTextColor(basicText);
+        player_4_name.setTextColor(basicText);
 
-        Player p = team_1.getPlayers().get(0);
-        player_name.setText(p.getName());
-        player_score.setText(new StringBuilder(p.getPoints() + ""));
+        String status = "On a red (15 reds left).";
+        player_message.setText(status);
+
+        Player p1 = team_1.getPlayers()[0];
+        player_1_name.setTextColor(accentText);
+        player_1_name.setText(p1.getName());
+        player_1_score.setTextColor(accentText);
+        player_1_score.setText(new StringBuilder(p1.getPoints() + ""));
+
+        Player p3 = team_1.getPlayers()[1];
+        player_3_name.setText(p3.getName());
+        player_3_score.setText(new StringBuilder(p3.getPoints() + ""));
+
+        Player p2 = team_2.getPlayers()[0];
+        player_2_name.setText(p2.getName());
+        player_2_score.setText(new StringBuilder(p2.getPoints() + ""));
+
+        Player p4 = team_2.getPlayers()[1];
+        player_4_name.setText(p4.getName());
+        player_4_score.setText(new StringBuilder(p4.getPoints() + ""));
+
+        String rem = "Available: " + game.getRemaining();
+        remaining.setText(rem);
     }
 
     public void pot(View view) {
         String ball_color = view.getTag().toString();
-        int score = 0;
         switch (ball_color) {
-            case "RED": score = RED; redCount--; break;
-            case "YLW": score = YLW; break;
-            case "GRN": score = GRN; break;
-            case "BWN": score = BWN; break;
-            case "BLU": score = BLU; break;
-            case "PNK": score = PNK; break;
-            case "BLK": score = BLK; break;
+            case "RED":
+                if (game.potRed()) {
+                    updateUILog(game.getTurn(), R.color.colorRedBallF);
+                } break;
+            case "YLW":
+                if (game.potYlw()) {
+                    updateUILog(game.getTurn(), R.color.colorYlwBallF);
+                } break;
+            case "GRN":
+                if (game.potGrn()) {
+                    updateUILog(game.getTurn(), R.color.colorGrnBallF);
+                } break;
+            case "BWN":
+                if (game.potBwn()) {
+                    updateUILog(game.getTurn(), R.color.colorBwnBallF);
+                } break;
+            case "BLU":
+                if (game.potBlu()) {
+                    updateUILog(game.getTurn(), R.color.colorBluBallF);
+                } break;
+            case "PNK":
+                if (game.potPnk()) {
+                    updateUILog(game.getTurn(), R.color.colorPnkBallF);
+                } break;
+            case "BLK":
+                if (game.potBlk()) {
+                    updateUILog(game.getTurn(), R.color.colorBlkBallF);
+                } break;
         }
-        //toggleButtons();
-        if (turn) {
-            team_1.addPoints(score);
-            team_1.getPlayers().get(0).addPoints(score);
-            team_1_score.setText(new StringBuilder(team_1.getPoints() + ""));
-
-            Player p = team_1.getPlayers().get(0);
-            player_name.setText(p.getName());
-            player_score.setText(new StringBuilder(p.getPoints() + ""));
-        }
-        else {
-            team_2.addPoints(score);
-            team_2.getPlayers().get(0).addPoints(score);
-            team_2_score.setText(new StringBuilder(team_2.getPoints() + ""));
-
-            Player p = team_2.getPlayers().get(0);
-            player_name.setText(p.getName());
-            player_score.setText(new StringBuilder(p.getPoints() + ""));
-        }
-    }
-
-    public void toggleButtons() {
-        if (redCount <= 0) {
-            this.redButton.setEnabled(false);
-        }
+        updateUI();
     }
 
     public void nextPlayer(View view) {
-        this.turn = !turn;
-        String whose_turn;
-        if (turn) {
-            Player p = team_1.getPlayers().get(0);
-            player_name.setText(p.getName());
-            player_score.setText(new StringBuilder(p.getPoints() + ""));
-            whose_turn = team_1.getName() + "'s turn";
-        } else {
-            Player p = team_2.getPlayers().get(0);
-            player_name.setText(p.getName());
-            player_score.setText(new StringBuilder(p.getPoints() + ""));
-            player_name.setText(team_2.getPlayers().get(0).getName());
-            whose_turn = team_2.getName() + "'s turn";
-        }
-        player_message.setText(whose_turn);
+        this.game.nextPlayer();
+        updateUI();
     }
 
+    // foul score is added to the team score not individual.
     public void foul(View view) {
-        if (turn) {
-            team_2.addPoints(FOUL);
-        } else {
-            team_1.addPoints(FOUL);
-        }
-        nextPlayer(view);
+        this.game.foul();
+        updateUI();
     }
 
     public void endFrame(View view) {
-        String winning_message = "";
-        if (team_1.getPoints() > team_2.getPoints()) {
-            winning_message += team_1.getName() + " has won with " + team_1.getPoints() + " points!";
-        } else if (team_2.getPoints() > team_1.getPoints()) {
-            winning_message += team_2.getName() + " has won with " + team_2.getPoints() + " points!!";
-        } else {
-            winning_message += "It's a tie! Well played!";
-        }
-        player_message.setText(winning_message);
+        player_message.setText(game.winner());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+            .setTitle("Everybody Ready?")
+            .setMessage("The game will commence!")
+            .setCancelable(true)
+            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            })
+            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            })
+            .show();
 
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
-                Intent intent = new Intent(GameActivity.this, HomeActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(GameActivity.this, HomeActivity.class);
+//                startActivity(intent);
+                finish();
             }
         }, 5000);
+    }
+
+    public void updateUI() {
+        String status = "";
+        Player p = game.getPlayer();
+        String score = p.getPoints() + "";
+        int turn = game.getTurn();
+
+        String rem = "Available: " + game.getRemaining();
+        remaining.setText(rem);
+
+        player_1_name.setTextColor(basicText);
+        player_2_name.setTextColor(basicText);
+        player_3_name.setTextColor(basicText);
+        player_4_name.setTextColor(basicText);
+        player_1_score.setTextColor(basicText);
+        player_2_score.setTextColor(basicText);
+        player_3_score.setTextColor(basicText);
+        player_4_score.setTextColor(basicText);
+
+        if (turn == 0) {
+            player_1_name.setTextColor(accentText);
+            player_1_score.setTextColor(accentText);
+            player_1_score.setText(score);
+            team_1_score.setText(new StringBuilder(game.team_1.getPoints() + ""));
+        } else if (turn == 1) {
+            player_2_name.setTextColor(accentText);
+            player_2_score.setTextColor(accentText);
+            player_2_score.setText(score);
+            team_2_score.setText(new StringBuilder(game.team_2.getPoints() + ""));
+        } else if (turn == 2) {
+            player_3_name.setTextColor(accentText);
+            player_3_score.setTextColor(accentText);
+            player_3_score.setText(score);
+            team_1_score.setText(new StringBuilder(game.team_1.getPoints() + ""));
+        } else {
+            player_4_name.setTextColor(accentText);
+            player_4_score.setTextColor(accentText);
+            player_4_score.setText(score);
+            team_2_score.setText(new StringBuilder(game.team_2.getPoints() + ""));
+        }
+
+        int colour = game.getColorToPot();
+        if (colour == Game.RED) {
+            status += "On a red";
+        } else if (colour == Game.NOTRED) {
+            status += "On a colour";
+        } else if (colour == Game.YLW) {
+            status += "On yellow";
+        } else if (colour == Game.GRN) {
+            status += "On green";
+        } else if (colour == Game.BWN) {
+            status += "On brown";
+        } else if (colour == Game.BLU) {
+            status += "On blue";
+        } else if (colour == Game.PNK) {
+            status += "On pink";
+        } else if (colour == Game.BLK) {
+            status += "On black";
+        } else { // game is over
+            status = "Frame over!";
+            foulButton.setEnabled(false);
+            foulButton.setVisibility(View.INVISIBLE);
+            nextButton.setEnabled(false);
+            nextButton.setVisibility(View.INVISIBLE);
+            player_message.setText(status);
+            return;
+        }
+
+        if (game.getRedCount() != 0) {
+            status += " (" + game.getRedCount() + " reds left).";
+        } else {
+            status += " (No more reds).";
+        }
+        player_message.setText(status);
+    }
+
+    public void updateUILog(int turn, int ball_color) {
+        if ((turn & 1) == 0) { // team 1
+            if (turn == 0) {
+                appendColoredText(player_1_log, getResources().getColor(ball_color));
+            } else {
+                appendColoredText(player_3_log, getResources().getColor(ball_color));
+            }
+        } else {
+            if (turn == 1) {
+                appendColoredText(player_2_log, getResources().getColor(ball_color));
+            } else {
+                appendColoredText(player_4_log, getResources().getColor(ball_color));
+            }
+        }
+    }
+
+    public static void appendColoredText(TextView tv, int color) {
+        int start = tv.getText().length();
+        tv.append("O ");
+        int end = tv.getText().length();
+
+        Spannable spannableText = (Spannable) tv.getText();
+        spannableText.setSpan(new ForegroundColorSpan(color), start, end, 0);
     }
 }

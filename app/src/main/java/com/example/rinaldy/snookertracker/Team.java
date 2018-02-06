@@ -10,12 +10,12 @@ public class Team {
 
     private String name;
     private int points;
-    private ArrayList<Player> players;
+    private Player[] players;
 
     public Team(String name) {
         this.name = name;
         this.points = 0;
-        this.players = new ArrayList<>();
+        this.players = new Player[2];
     }
 
     public String getName() {
@@ -34,11 +34,21 @@ public class Team {
         this.points += points;
     }
 
-    public void addPlayer(Player p) {
-        this.players.add(p);
+    public void addPointsP1(int points) {
+        addPoints(points);
+        players[0].addPoints(points);
+    }
+    public void addPointsP2(int points) {
+        addPoints(points);
+        players[1].addPoints(points);
     }
 
-    public ArrayList<Player> getPlayers() {
+    public void addPlayers(Player p, Player q) {
+        this.players[0] = p;
+        this.players[1] = q;
+    }
+
+    public Player[] getPlayers() {
         return this.players;
     }
 
@@ -50,6 +60,4 @@ public class Team {
         }
         return "Team " + this.name + ": " + names + "\nScore: " + this.points;
     }
-
-
 }
