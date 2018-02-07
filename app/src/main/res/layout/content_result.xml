@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
+    android:background="@color/colorGreen0"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.rinaldy.snookertracker.ResultActivity"
     tools:showIn="@layout/activity_result">
@@ -13,10 +13,12 @@
         android:id="@+id/winning_team"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="72dp"
-        android:text="TextView"
+        android:layout_marginTop="28dp"
+        android:fontFamily="cursive"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,42 +26,53 @@
         android:id="@+id/mvp"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="224dp"
-        android:text="TextView"
+        android:layout_marginTop="240dp"
+        android:fontFamily="cursive"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/winning_team" />
 
-    <Button
-        android:id="@+id/to_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="178dp"
-        android:layout_height="154dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="195dp"
+        android:layout_height="177dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/result_trophy"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/winning_team"
         app:srcCompat="@drawable/trophy" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="118dp"
-        android:layout_height="187dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:contentDescription="@string/result_medal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mvp"
         app:srcCompat="@drawable/award" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:onClick="backToHome"
+        android:text="@string/result_home"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.403" />
 </android.support.constraint.ConstraintLayout>

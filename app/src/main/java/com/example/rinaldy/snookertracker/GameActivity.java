@@ -148,8 +148,8 @@ public class GameActivity extends AppCompatActivity {
                     updateUILog(game.getTurn(), R.color.colorBlkBallF);
                 } if (game.getColorToPot() == Game.DONE) {
                     Snackbar
-                        .make(view, "Frame over, see the results.", Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Next", new View.OnClickListener() {
+                        .make(view, "Frame over.", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("See Results", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 frameOver();
@@ -164,7 +164,9 @@ public class GameActivity extends AppCompatActivity {
 
     private void frameOver() {
         Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+        String results = game.team_1.getName() + "  " + game.team_1.getPoints() + " - " + game.team_2.getPoints() + "  " + game.team_2.getName();
         intent.putExtra("winner", game.winner());
+        intent.putExtra("results", results);
         startActivity(intent);
     }
 
