@@ -52,6 +52,10 @@ public class Team {
         return this.players;
     }
 
+    public Player getBestPlayer() {
+        return players[0].getPoints() > players[1].getPoints() ? players[0] : players[1];
+    }
+
     @Override
     public String toString() {
         StringBuilder names = new StringBuilder();

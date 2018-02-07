@@ -24,6 +24,10 @@
         <activity
             android:name=".GameActivity"
             android:label="@string/title_activity_game" />
+        <activity
+            android:name=".ResultActivity"
+            android:label="@string/title_activity_result"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

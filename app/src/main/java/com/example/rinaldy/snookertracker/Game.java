@@ -182,16 +182,25 @@ public class Game {
         nextPlayer();
     }
 
-    public String winner() {
-        String winning_message = "";
+    public String[] winner() {
+        String[] winner = new String[4];
         if (team_1.getPoints() > team_2.getPoints()) {
-            winning_message += team_1.getName() + " has won with " + team_1.getPoints() + " points!";
-        } else if (team_2.getPoints() > team_1.getPoints()) {
-            winning_message += team_2.getName() + " has won with " + team_2.getPoints() + " points!!";
+            winner[0] = team_1.getName();
+            winner[1] = team_1.getPoints() + "";
         } else {
-            winning_message += "It's a tie! Uhh lucky?";
+            winner[0] = team_2.getName();
+            winner[1] = team_2.getPoints() + "";
         }
-        return winning_message;
+        Player t1 = team_1.getBestPlayer();
+        Player t2 = team_2.getBestPlayer();
+        if (t1.getPoints() > t2.getPoints()) {
+            winner[2] = t1.getName();
+            winner[3] = t1.getPoints() + "";
+        } else {
+            winner[2] = t2.getName();
+            winner[3] = t2.getPoints() + "";
+        }
+        return winner;
     }
 
     public int getTurn() {

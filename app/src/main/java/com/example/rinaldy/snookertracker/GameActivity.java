@@ -3,9 +3,9 @@ package com.example.rinaldy.snookertracker;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
@@ -17,13 +17,6 @@ public class GameActivity extends AppCompatActivity {
     int basicText;
     int accentText;
 
-    private Button redButton;
-    private Button ylwButton;
-    private Button grnButton;
-    private Button bwnButton;
-    private Button bluButton;
-    private Button pnkButton;
-    private Button blkButton;
     private Button foulButton;
     private Button nextButton;
 
@@ -75,14 +68,6 @@ public class GameActivity extends AppCompatActivity {
         player_4_log = (TextView) findViewById(R.id.player_4_log);
 
         player_message = (TextView) findViewById(R.id.yourturn);
-
-        redButton = (Button) findViewById(R.id.redButton);
-        ylwButton = (Button) findViewById(R.id.ylwButton);
-        grnButton = (Button) findViewById(R.id.grnButton);
-        bwnButton = (Button) findViewById(R.id.bwnButton);
-        bluButton = (Button) findViewById(R.id.bluButton);
-        pnkButton = (Button) findViewById(R.id.pnkButton);
-        blkButton = (Button) findViewById(R.id.blkButton);
         foulButton = (Button) findViewById(R.id.foul);
         nextButton = (Button) findViewById(R.id.nextPlayer);
 
@@ -161,9 +146,26 @@ public class GameActivity extends AppCompatActivity {
             case "BLK":
                 if (game.potBlk()) {
                     updateUILog(game.getTurn(), R.color.colorBlkBallF);
-                } break;
+                } if (game.getColorToPot() == Game.DONE) {
+                    Snackbar
+                        .make(view, "Frame over, see the results.", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Next", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                frameOver();
+                            }
+                        })
+                        .show();
+                }
+                break;
         }
         updateUI();
+    }
+
+    private void frameOver() {
+        Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+        intent.putExtra("winner", game.winner());
+        startActivity(intent);
     }
 
     public void nextPlayer(View view) {
@@ -178,16 +180,17 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void endFrame(View view) {
-        player_message.setText(game.winner());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder
-            .setTitle("Everybody Ready?")
-            .setMessage("The game will commence!")
+            .setTitle("End the frame?")
+            .setMessage("The game will be over.")
             .setCancelable(true)
             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-
+                    String message = "Frame over";
+                    player_message.setText(message);
+                    frameOver();
                 }
             })
             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -196,14 +199,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             })
             .show();
-
-        new android.os.Handler().postDelayed(new Runnable() {
-            public void run() {
-//                Intent intent = new Intent(GameActivity.this, HomeActivity.class);
-//                startActivity(intent);
-                finish();
-            }
-        }, 5000);
     }
 
     public void updateUI() {

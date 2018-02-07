@@ -1,5 +1,6 @@
 package com.example.rinaldy.snookertracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,8 +21,17 @@ public class RulesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "I know you like the game!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "This app will Reinvent your Snooker Game";
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Snooker Tracker");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+
+                Snackbar
+                    .make(view, "Thanks for sharing!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
             }
         });
     }
